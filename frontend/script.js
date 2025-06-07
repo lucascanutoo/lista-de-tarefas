@@ -69,4 +69,21 @@ async function deleteTask(id) {
   fetchTasks();
 }
 
+function renderTask(task) {
+  const li = document.createElement("li");
+  li.className = "task-item";
+  if (task.completed) li.classList.add("completed");
+
+  li.innerHTML = `
+    <span>${task.title}</span>
+    <div>
+      <button onclick="toggleTask('${task._id}')">✔</button>
+      <button onclick="editTask('${task._id}')">✏️</button>
+      <button onclick="deleteTask('${task._id}')">🗑️</button>
+    </div>
+  `;
+
+  document.getElementById("task-list").appendChild(li);
+}
+
 fetchTasks();
